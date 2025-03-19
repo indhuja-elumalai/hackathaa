@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accessibility Extension</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            width: 100%;
+            margin-bottom: 8px;
+            padding: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h3>🔊 For Blind Users</h3>
+    <button id="readText">Read Aloud</button>
+    <button id="voiceCommand">Voice Commands</button>
+    <button id="translateText">Translate Page</button>
+
+    <h3>📺 For Deaf Users</h3>
+    <button id="generateCC">Generate Subtitles</button>
+    <button id="transcribeAudio">Transcribe Audio</button>
+
+    <h3>🎤 For Non-Verbal Users</h3>
+    <button id="voiceTyping">Voice Typing</button>
+
+    <h3>⚡ For Others</h3>
+    <button id="increaseFont">Increase Font Size</button>
+    <button id="toggleContrast">Toggle High Contrast</button>
+    <button id="enableNavigation">Enable Keyboard Navigation</button>
+
+    <script src="popup.js"></script>
+</body>
+</html>
