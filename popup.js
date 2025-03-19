@@ -10,7 +10,7 @@ document.getElementById("fontSize").addEventListener("click", () => {
 
     // Send message to change font size in active tab
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        console.log("Sending message to change font size: ", newSize);  // Debug
+        
         chrome.tabs.sendMessage(tabs[0].id, { action: "changeFontSize", size: newSize });
     });
 });
