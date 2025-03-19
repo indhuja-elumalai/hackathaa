@@ -1,47 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Accessibility Extension</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 10px;
-            width: 320px;
-        }
-        h3 {
-            margin-top: 16px;
-        }
-        button {
-            width: 100%;
-            margin-bottom: 8px;
-            padding: 12px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            background-color: #f5f5f5;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #e0e0e0;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Accessibility Tools</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <h3>📚 For Blind Users</h3>
-    <button id="readText">Read Aloud</button>
-    <button id="voiceCommand">Voice Commands</button>
-    <button id="translateText">Translate Page</button>
+    <div class="container">
+        <header>
+            <h2>Accessibility Tools</h2>
+            <i class="fas fa-cog settings"></i>
+        </header>
 
-    <h3>📺 For Deaf Users</h3>
-    <button id="generateCC">Generate Subtitles</button>
-    <button id="transcribeAudio">Transcribe Audio</button>
+        <div class="tool">
+            <div class="tool-left">
+                <i class="fas fa-volume-up icon"></i>
+                <div>
+                    <p class="tool-title">Read Page Aloud</p>
+                    <span class="shortcut">Alt + R</span>
+                </div>
+            </div>
+            <p class="status idle">Idle</p>
+        </div>
 
-    <h3>🎤 For Non-Verbal Users</h3>
-    <button id="voiceTyping">Voice Typing</button>
+        <div class="tool">
+            <div class="tool-left">
+                <i class="fas fa-text-height icon"></i>
+                <div>
+                    <p class="tool-title">Font Size</p>
+                    <span class="shortcut">Alt + F</span>
+                </div>
+            </div>
+            <p class="status">Medium ></p>
+        </div>
 
-    <h3>⚡ For Others</h3>
-    <button id="increaseFont">Increase Font Size</button>
-    <button id="toggleContrast">Toggle High Contrast</button>
-    <button id="enableNavigation">Enable Keyboard Navigation</button>
+        <div class="tool">
+            <div class="tool-left">
+                <i class="fas fa-adjust icon"></i>
+                <div>
+                    <p class="tool-title">High Contrast Mode</p>
+                    <span class="shortcut">Alt + C</span>
+                </div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="toggleContrast">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="tool">
+            <div class="tool-left">
+                <i class="fas fa-microphone icon"></i>
+                <div>
+                    <p class="tool-title">Voice Commands</p>
+                    <span class="shortcut">Alt + V</span>
+                </div>
+            </div>
+            <p class="status disabled">Disabled</p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-left">
+                <i class="fas fa-language icon"></i>
+                <div>
+                    <p class="tool-title">Translate Page</p>
+                    <span class="info">Select language to translate</span>
+                </div>
+            </div>
+            <p class="status">></p>
+        </div>
+    </div>
 
     <script src="popup.js"></script>
 </body>
