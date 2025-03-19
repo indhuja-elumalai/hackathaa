@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Accessibility Tools</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -14,7 +13,7 @@
             <i class="fas fa-cog settings"></i>
         </header>
 
-        <div class="tool">
+        <div class="tool" id="readAloud">
             <div class="tool-left">
                 <i class="fas fa-volume-up icon"></i>
                 <div>
@@ -25,7 +24,7 @@
             <p class="status idle">Idle</p>
         </div>
 
-        <div class="tool">
+        <div class="tool" id="fontSize">
             <div class="tool-left">
                 <i class="fas fa-text-height icon"></i>
                 <div>
@@ -33,10 +32,10 @@
                     <span class="shortcut">Alt + F</span>
                 </div>
             </div>
-            <p class="status">Medium ></p>
+            <p class="status" id="fontSizeStatus">Medium ></p>
         </div>
 
-        <div class="tool">
+        <div class="tool" id="contrastMode">
             <div class="tool-left">
                 <i class="fas fa-adjust icon"></i>
                 <div>
@@ -50,7 +49,7 @@
             </label>
         </div>
 
-        <div class="tool">
+        <div class="tool" id="voiceCommands">
             <div class="tool-left">
                 <i class="fas fa-microphone icon"></i>
                 <div>
@@ -61,7 +60,7 @@
             <p class="status disabled">Disabled</p>
         </div>
 
-        <div class="tool">
+        <div class="tool" id="translatePage">
             <div class="tool-left">
                 <i class="fas fa-language icon"></i>
                 <div>

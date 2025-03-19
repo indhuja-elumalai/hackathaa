@@ -1,21 +1,30 @@
 {
   "manifest_version": 3,
-  "name": "Accessibility Assistant",
+  "name": "Accessibility Tools",
   "version": "1.0",
-  "description": "Provides accessibility features for different users",
+  "description": "Enhance webpage accessibility with tools like font size adjustment, contrast mode, and more.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/access-control.png",
+      "48": "icons/secure-access.png",
+      "128": "icons/toilet.png"
+    }
+  },
   "permissions": [
     "activeTab",
-    "scripting",
-    "tabs"
+    "scripting"
   ],
   "host_permissions": [
     "<all_urls>"
   ],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": "icons/access-control.png"
-  },
   "background": {
     "service_worker": "background.js"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
 }
