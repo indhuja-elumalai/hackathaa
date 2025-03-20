@@ -1,58 +1,134 @@
 // Font Size Mapping
 const fontSizeMap = {
-    small: "16px",
-    medium: "18px",
-    large: "24px"
-  };
-  
-  // Listen for messages from popup.js
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log("Message received: ", request.action, request.size);  // Debug
-    if (request.action === "changeFontSize") {
+  small: "16px",
+  medium: "18px",
+  large: "24px",
+};
+
+// Listen for messages from popup.js
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log("Message received:", request.action);
+
+  switch (request.action) {
+    // Change Font Size
+    case "changeFontSize":
       document.querySelectorAll("*").forEach((el) => {
-        el.style.fontSize = fontSizeMap[request.size];
-    });
-    
-        console.log("Font size changed to: ", fontSizeMap[request.size]);  // Debug
-    }
-  
-    if (request.action === "toggleContrast") {
-        if (request.enabled) {
-            document.documentElement.style.filter = "contrast(1.5)";
-            document.documentElement.style.backgroundColor = "#000";
-            document.documentElement.style.color = "#fff";
-            
-            // Ensure all elements inherit the high contrast mode
-            document.querySelectorAll("*").forEach((el) => {
-                el.style.backgroundColor = "black";
-                el.style.color = "white";
-            });
-        } else {
-            document.documentElement.style.filter = "none";
-            document.documentElement.style.backgroundColor = "";
-            document.documentElement.style.color = "";
-            
-            // Reset all elements to default styles
-            document.querySelectorAll("*").forEach((el) => {
-                el.style.backgroundColor = "";
-                el.style.color = "";
-            });
-        }
-    }      
-   
-    if (request.action === "readAloud") {
+        el.style.fontSize = fontSizeMap[request.size] || "18px";
+      });
+      console.log("Font size changed to:", fontSizeMap[request.size]);
+      break;
+
+    // Toggle High Contrast Mode
+    case "toggleContrast":
+      toggleContrastMode(request.enabled);
+      break;
+
+    // Toggle Dyslexia-Friendly Font
+    case "toggleDyslexiaFont":
+      toggleDyslexiaFont(request.enabled);
+      break;
+
+    // Restore Dyslexia Font on Page Load
+    case "restoreDyslexiaFont":
+      if (request.enabled) {
+        document.body.style.fontFamily = "'OpenDyslexic', Arial, sans-serif";
+        console.log("Dyslexia-friendly font restored on page load.");
+      }
+      break;
+
+    // Read Page Aloud (One-time)
+    case "readAloud":
       readPageAloud();
-    }
-  });
-  
-  
-  // Read Page Aloud Function
-  function readPageAloud() {
+      break;
+
+    // Toggle Continuous Read Aloud
+    case "toggleReadAloud":
+      request.enabled ? startReading() : stopReading();
+      break;
+
+    // Toggle Speech-to-Text with Translation
+    case "toggleSpeechToText":
+      startSpeechToText();
+      break;
+  }
+});
+
+//
+// ======== Helper Functions ========
+//
+
+// Toggle High Contrast Mode
+function toggleContrastMode(enabled) {
+  if (enabled) {
+    document.documentElement.style.filter = "contrast(1.5)";
+    document.documentElement.style.backgroundColor = "#000";
+    document.documentElement.style.color = "#fff";
+    document.querySelectorAll("*").forEach((el) => {
+      el.style.backgroundColor = "black";
+      el.style.color = "white";
+    });
+  } else {
+    document.documentElement.style.filter = "none";
+    document.documentElement.style.backgroundColor = "";
+    document.documentElement.style.color = "";
+    document.querySelectorAll("*").forEach((el) => {
+      el.style.backgroundColor = "";
+      el.style.color = "";
+    });
+  }
+}
+
+// Toggle Dyslexia Font
+function toggleDyslexiaFont(enabled) {
+  document.body.style.fontFamily = enabled
+    ? "'OpenDyslexic', Arial, sans-serif"
+    : "";
+  console.log(
+    enabled ? "Dyslexia-friendly font applied." : "Font reset to default."
+  );
+}
+
+// ======== Read Aloud Functions ========
+let isReading = false;
+let utterance;
+
+// Read Page Aloud (Once)
+function readPageAloud() {
+  const content = document.body.innerText;
+  if (content) {
+    const utterance = new SpeechSynthesisUtterance(content);
+    utterance.rate = 1; // Normal speed
+    speechSynthesis.speak(utterance);
+    console.log("Reading page aloud...");
+  }
+}
+
+// Start Continuous Reading
+function startReading() {
+  if (!isReading) {
     const content = document.body.innerText;
     if (content) {
-      const utterance = new SpeechSynthesisUtterance(content);
-      utterance.rate = 1; // Normal speech rate
+      utterance = new SpeechSynthesisUtterance(content);
+      utterance.rate = 1;
       speechSynthesis.speak(utterance);
-      console.log("Reading page aloud...");
+      isReading = true;
+      console.log("Continuous reading started...");
     }
   }
+}
+
+// Stop Continuous Reading
+function stopReading() {
+  if (isReading) {
+    speechSynthesis.cancel();
+    isReading = false;
+    console.log("Continuous reading stopped.");
+  }
+}
+
+// ======== Speech-to-Text and Translation ========
+function startSpeechToText() {
+  console.log("Speech-to-text translation initiated...");
+  // Placeholder logic for speech-to-text
+  alert("Speech-to-text feature is coming soon!");
+}

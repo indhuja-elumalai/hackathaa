@@ -5,6 +5,8 @@
     <title>Accessibility Tools</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OpenDyslexic/3.0.0/css/OpenDyslexic.min.css">
+
 </head>
 <body>
     <div class="container">
@@ -21,7 +23,10 @@
                     <span class="shortcut">Alt + R</span>
                 </div>
             </div>
-            <p class="status idle">Idle</p>
+            <label class="switch">
+                <input type="checkbox" id="toggleReadAloud">
+                <span class="slider"></span>
+            </label>
         </div>
 
         <div class="tool" id="fontSize">
@@ -49,23 +54,28 @@
             </label>
         </div>
 
-        <div class="tool" id="voiceCommands">
+        <div class="tool" id="dyslexiaFont">
             <div class="tool-left">
-                <i class="fas fa-microphone icon"></i>
+                <i class="fas fa-font icon"></i>
                 <div>
-                    <p class="tool-title">Voice Commands</p>
-                    <span class="shortcut">Alt + V</span>
+                    <p class="tool-title">Dyslexia-Friendly Font</p>
+                    <span class="shortcut">Alt + D</span>
                 </div>
             </div>
-            <p class="status disabled">Disabled</p>
+            <label class="switch">
+                <input type="checkbox" id="toggleDyslexiaFont">
+                <span class="slider"></span>
+            </label>
         </div>
+        
+          
 
         <div class="tool" id="translatePage">
             <div class="tool-left">
                 <i class="fas fa-language icon"></i>
                 <div>
-                    <p class="tool-title">Translate Page</p>
-                    <span class="info">Select language to translate</span>
+                    <p class="tool-title">Translate</p>
+                    <span class="info">Speech to text</span>
                 </div>
             </div>
             <p class="status">></p>
