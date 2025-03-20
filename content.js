@@ -53,9 +53,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-//
-// ======== Helper Functions ========
-//
+
+// =Helper Functions
+
 
 // Toggle High Contrast Mode
 function toggleContrastMode(enabled) {
@@ -80,15 +80,25 @@ function toggleContrastMode(enabled) {
 
 // Toggle Dyslexia Font
 function toggleDyslexiaFont(enabled) {
-  document.body.style.fontFamily = enabled
-    ? "'OpenDyslexic', Arial, sans-serif"
-    : "";
-  console.log(
-    enabled ? "Dyslexia-friendly font applied." : "Font reset to default."
-  );
+  if (enabled) {
+    document.body.style.fontFamily = "'OpenDyslexic', Arial, sans-serif";
+    document.body.style.letterSpacing = "0.12em";
+    document.body.style.lineHeight = "1.6";
+    document.body.style.backgroundColor = "#FFFFE0"; 
+    document.body.style.fontSize = "18px"; 
+    console.log("Dyslexia-friendly font applied.");
+  } else {
+    document.body.style.fontFamily = "";
+    document.body.style.letterSpacing = "";
+    document.body.style.lineHeight = "";
+    document.body.style.backgroundColor = "";
+    document.body.style.fontSize = "";
+    console.log("Font reset to default.");
+  }
 }
 
-// ======== Read Aloud Functions ========
+
+// = Read Aloud Functions 
 let isReading = false;
 let utterance;
 
@@ -126,7 +136,7 @@ function stopReading() {
   }
 }
 
-// ======== Speech-to-Text and Translation ========
+// =Speech-to-Text and Translation
 function startSpeechToText() {
   console.log("Speech-to-text translation initiated...");
   // Placeholder logic for speech-to-text
