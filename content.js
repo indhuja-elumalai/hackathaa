@@ -140,5 +140,5 @@ function stopReading() {
 function startSpeechToText() {
   console.log("Speech-to-text translation initiated...");
   // Placeholder logic for speech-to-text
-  alert("Speech-to-text feature is coming soon!");
+  alert("Sign-language-Recognisation feature is coming soon!");
 }
